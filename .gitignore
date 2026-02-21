@@ -1,0 +1,26 @@
+# Virtual Environment
+env_installation/
+.venv/
+venv/
+
+# Django
+*.pyc
+__pycache__/
+*.sqlite3
+db.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+*.egg-info/
+dist/
+build/
