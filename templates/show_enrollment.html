@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Show Enrollments {% endblock %}
+{% block content %}
+    <section id="enrollments" class="enrollments section">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="section-header">
+          <h2>Student Enrollments</h2>
+          <p>List of all student enrollments in courses.</p>
+        </div>
+
+        <div class="enrollment-list">
+          {% if enrollments %}
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Selected Course</th>
+                 <th>phone number</th>
+                 <th>education level</th>
+                 <th>experience level</th>
+                 <th>Actions</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for enrollment in enrollments %}
+                  <tr>
+                    <td>{{ enrollment.name }}</td>
+                    <td>{{ enrollment.email }}</td>
+                    <td>{{ enrollment.select_course }}</td>
+                    <td>{{ enrollment.phone_number }}</td>
+                    <td>{{ enrollment.education_level }}</td>
+                    <td>{{ enrollment.experience_level }}</td>
+                    <td>
+                      
+                        <a href="{% url 'ganji:delete_enrollment' enrollment.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                      
+                  </tr>
+                {% endfor %}
+              </tbody> 
+            </table>
+          {% else %}
+            <p>No enrollments found.</p>
+          {% endif %}
+        </div>
+
+      </div>
+    </section>
+
+{%endblock %}

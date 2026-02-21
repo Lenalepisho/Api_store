@@ -66,4 +66,18 @@ def enroll(request):
         enrollment_obj.save()
         return redirect('ganji:index')
         
-    return render(request, 'enroll.html')   
+    return render(request, 'enroll.html')
+
+#retrieve all enrollments 
+def read_enroll(request):
+    """create a view to read and display all enrollments"""
+    enrollments = Enroll.objects.all()  # Get all enrollment records
+    context={'enrollments': enrollments}  # Pass the enrollments to the template context
+    return render(request, 'show_enrollment.html', context)
+
+#delte enrollment
+def delete_enroll(request, enroll_id):
+    """create a view to delete an enrollment"""
+    enrollment = Enroll.objects.get(id=enroll_id)  # Get the enrollment record by ID
+    enrollment.delete()  # Delete the record from the database
+    return redirect('ganji:show_enrollment')  # Redirect back to the enrollment list view
