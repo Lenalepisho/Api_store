@@ -142,7 +142,7 @@
                         <span class="level">Intermediate</span>
                       </div>
                       <h3>Advanced JavaScript Development</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                      <p>Learn modern JavaScript techniques, architecture patterns, and build real-world web applications.</p>
                       <div class="course-stats">
                         <div class="stat">
                           <i class="bi bi-clock"></i>
@@ -165,7 +165,7 @@
                         <img src="{% static 'assets/img/person/person-m-3.webp' %}" alt="Instructor" class="instructor-avatar">
                         <span class="instructor-name">Dr. Marcus Thompson</span>
                       </div>
-                      <a href="enroll.html" class="btn-course">Enroll Now</a>
+                      <a href="{% url 'ganji:enroll' %}?course=web-development" class="btn-course">Enroll Now</a>
                     </div>
                   </div><!-- End Course Card -->
                 </div>
@@ -205,7 +205,7 @@
                         <img src="{% static 'assets/img/person/person-f-7.webp' %}" alt="Instructor" class="instructor-avatar">
                         <span class="instructor-name">Sarah Johnson</span>
                       </div>
-                      <a href="enroll.html" class="btn-course">Start Free Course</a>
+                      <a href="{% url 'ganji:enroll' %}?course=ui-ux-design" class="btn-course">Start Free Course</a>
                     </div>
                   </div><!-- End Course Card -->
                 </div>
@@ -246,7 +246,7 @@
                         <img src="{% static 'assets/img/person/person-m-8.webp' %}" alt="Instructor" class="instructor-avatar">
                         <span class="instructor-name">David Rodriguez</span>
                       </div>
-                      <a href="enroll.html" class="btn-course">Enroll Now</a>
+                      <a href="{% url 'ganji:enroll' %}?course=digital-marketing" class="btn-course">Enroll Now</a>
                     </div>
                   </div><!-- End Course Card -->
                 </div>
@@ -286,7 +286,7 @@
                         <img src="{% static 'assets/img/person/person-f-12.webp' %}" alt="Instructor" class="instructor-avatar">
                         <span class="instructor-name">Prof. Anna Chen</span>
                       </div>
-                      <a href="enroll.html" class="btn-course">Enroll Now</a>
+                      <a href="{% url 'ganji:enroll' %}?course=machine-learning" class="btn-course">Enroll Now</a>
                     </div>
                   </div><!-- End Course Card -->
                 </div>
@@ -327,7 +327,7 @@
                         <img src="{% static 'assets/img/person/person-m-5.webp' %}" alt="Instructor" class="instructor-avatar">
                         <span class="instructor-name">Michael Davis</span>
                       </div>
-                      <a href="enroll.html" class="btn-course">Enroll Now</a>
+                      <a href="{% url 'ganji:enroll' %}?course=social-media-marketing" class="btn-course">Enroll Now</a>
                     </div>
                   </div><!-- End Course Card -->
                 </div>
@@ -368,7 +368,7 @@
                         <img src="{% static 'assets/img/person/person-f-9.webp' %}" alt="Instructor" class="instructor-avatar">
                         <span class="instructor-name">Lisa Martinez</span>
                       </div>
-                      <a href="enroll.html" class="btn-course">Enroll Now</a>
+                      <a href="{% url 'ganji:enroll' %}?course=graphic-design" class="btn-course">Enroll Now</a>
                     </div>
                   </div><!-- End Course Card -->
                 </div>

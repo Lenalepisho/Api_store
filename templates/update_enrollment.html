@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Update Enrollment {% endblock %}
+{% block content %}
+<section id="enroll" class="enroll section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="enrollment-form-wrapper">
+
+              <div class="enrollment-header text-center mb-5" data-aos="fade-up" data-aos-delay="200">
+                <h2>Update Enrollment</h2>
+                <p>Update your enrollment information below.</p>
+              </div>
+
+              <form class="enrollment-form" method="post" data-aos="fade-up" data-aos-delay="300">
+                  {% csrf_token %}
+                <div class="row mb-4">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="firstName" class="form-label">First Name *</label>
+                      <input type="text" id="firstName" name="firstName" class="form-control" value="{% if enrollment.name %}{{ enrollment.name|truncatechars:50 }}{% endif %}" required="" autocomplete="given-name">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="lastName" class="form-label">Last Name *</label>
+                      <input type="text" id="lastName" name="lastName" class="form-control" value="" required="" autocomplete="family-name">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email" class="form-label">Email Address *</label>
+                      <input type="email" id="email" name="email" class="form-control" value="{{ enrollment.email }}" required="" autocomplete="email">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="phone" class="form-label">Phone Number</label>
+                      <input type="tel" id="phone" name="phone" class="form-control" value="{{ enrollment.phone_number }}" autocomplete="tel">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="course" class="form-label">Select Course *</label>
+                      <select id="course" name="course" class="form-select" required="">
+                        <option value="">Choose a course...</option>
+                        <option value="web-development" {% if enrollment.select_course == "web-development" %}selected{% endif %}>Full Stack Web Development</option>
+                        <option value="data-science" {% if enrollment.select_course == "data-science" %}selected{% endif %}>Data Science &amp; Analytics</option>
+                        <option value="digital-marketing" {% if enrollment.select_course == "digital-marketing" %}selected{% endif %}>Digital Marketing Mastery</option>
+                        <option value="ui-ux-design" {% if enrollment.select_course == "ui-ux-design" %}selected{% endif %}>UI/UX Design Fundamentals</option>
+                        <option value="cybersecurity" {% if enrollment.select_course == "cybersecurity" %}selected{% endif %}>Cybersecurity Essentials</option>
+                        <option value="mobile-development" {% if enrollment.select_course == "mobile-development" %}selected{% endif %}>Mobile App Development</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="education" class="form-label">Education Level</label>
+                      <select id="education" name="education" class="form-select">
+                        <option value="">Select your education level...</option>
+                        <option value="high-school" {% if enrollment.education_level == "high-school" %}selected{% endif %}>High School</option>
+                        <option value="associate" {% if enrollment.education_level == "associate" %}selected{% endif %}>Associate Degree</option>
+                        <option value="bachelor" {% if enrollment.education_level == "bachelor" %}selected{% endif %}>Bachelor's Degree</option>
+                        <option value="master" {% if enrollment.education_level == "master" %}selected{% endif %}>Master's Degree</option>
+                        <option value="doctorate" {% if enrollment.education_level == "doctorate" %}selected{% endif %}>Doctorate</option>
+                        <option value="other" {% if enrollment.education_level == "other" %}selected{% endif %}>Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="experience" class="form-label">Experience Level</label>
+                      <select id="experience" name="experience" class="form-select">
+                        <option value="">Select your experience...</option>
+                        <option value="beginner" {% if enrollment.experience_level == "beginner" %}selected{% endif %}>Beginner</option>
+                        <option value="intermediate" {% if enrollment.experience_level == "intermediate" %}selected{% endif %}>Intermediate</option>
+                        <option value="advanced" {% if enrollment.experience_level == "advanced" %}selected{% endif %}>Advanced</option>
+                        <option value="expert" {% if enrollment.experience_level == "expert" %}selected{% endif %}>Expert</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="motivation" class="form-label">What motivates you to take this course?</label>
+                      <textarea id="motivation" name="motivation" class="form-control" rows="4" placeholder="Share your goals and what you hope to achieve...">{{ enrollment.what_motivates_you_to_take_this_course }}</textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label class="form-label">Preferred Learning Schedule</label>
+                      <div class="schedule-options">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="schedule" id="weekdays" value="weekdays" {% if enrollment.preferred_learning_schedule == "weekdays" %}checked{% endif %}>
+                          <label class="form-check-label" for="weekdays">
+                            Weekdays (Monday - Friday)
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="schedule" id="weekends" value="weekends" {% if enrollment.preferred_learning_schedule == "weekends" %}checked{% endif %}>
+                          <label class="form-check-label" for="weekends">
+                            Weekends (Saturday - Sunday)
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="schedule" id="flexible" value="flexible" {% if enrollment.preferred_learning_schedule == "flexible" %}checked{% endif %}>
+                          <label class="form-check-label" for="flexible">
+                            Flexible (Self-paced)
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <div class="agreement-section">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="terms" name="terms" {% if enrollment.i_agree %}checked{% endif %} required="">
+                          <label class="form-check-label" for="terms">
+                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> *
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" {% if enrollment.i_would_like_to_receive_updates %}checked{% endif %}>
+                          <label class="form-check-label" for="newsletter">
+                            I would like to receive course updates and educational content via email
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-enroll">
+                      <i class="bi bi-check-circle me-2"></i>
+                      Update Enrollment
+                    </button>
+                    <a href="{% url 'ganji:show_enrollment' %}" class="btn btn-secondary ms-2">
+                      <i class="bi bi-arrow-left me-2"></i>
+                      Back
+                    </a>
+                    <p class="enrollment-note mt-3">
+                      <i class="bi bi-shield-check"></i>
+                      Your information is secure and will never be shared with third parties
+                    </p>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+          </div><!-- End Form Column -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Enroll Section -->
+{% endblock %}
