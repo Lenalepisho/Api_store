@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@s8#l-zc4h3^4lrr1u1v7p&!po=9gx8z*2geq-&-tdp*f4ynf^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -74,18 +74,12 @@ WSGI_APPLICATION = 'proj_installation.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+import dj_database_url
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQL_DATABASE', 'hub'),
-        'USER': os.getenv('MYSQL_USER', 'root'),
-        'PASSWORD': os.getenv('MYSQL_PASSWORD', ''),
-        'HOST': os.getenv('MYSQL_HOST', '127.0.0.1'),
-        'PORT': os.getenv('MYSQL_PORT', '3306'),
-        'OPTIONS': {'charset': 'utf8mb4'},
-           'sql_mode': 'STRICT_TRANS_TABLES',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', 'postgresql://neondb_owner:npg_XMCVo5j0Uyre@ep-young-recipe-airo3mls.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require')
+    )
 }
 
 # Password validation
@@ -124,10 +118,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
